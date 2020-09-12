@@ -1,10 +1,18 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import {View, Image} from 'react-native';
 
-export const LargeImg = () => {
+export const LargeImg = (props) => {
   return (
-    <View>
-      <Text>Large Img Component</Text>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <Image
+        style={{
+          flex: 1,
+          backgroundColor: '#000',
+        }}
+        source={{
+          uri: props.route.params.imgUri,
+        }}
+      />
     </View>
-  )
-}
+  );
+};

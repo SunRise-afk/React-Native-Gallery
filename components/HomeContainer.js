@@ -1,14 +1,15 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {connect} from 'react-redux';
+import {Home} from '../components/Home';
+import {getImgDataThunkCreator} from '../redux/HomeReducer';
 
-export const HomeContainer = (props) => {
-  return (
-    <View>
-      <Text>Home Container </Text>
-      <Button
-        title="Go to Large Image"
-        onPress={() => props.navigation.navigate('LargeImg', {})}
-      />
-    </View>
-  );
+const mapStateToProps = (state) => {
+  return {
+    isFetching: state.HomePage.isFetching,
+    ImgData: state.HomePage.Data,
+  };
 };
+const mapDispatchToProps = {
+  getImgDataThunkCreator
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
