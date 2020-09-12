@@ -1,26 +1,13 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export const ImageBlock = (props) => {
   return (
     <View>
       {props.imgData.urls.small && (
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: '#fff',
-            borderBottomWidth: 1,
-            borderBottomColor: '#000',
-            flexDirection: 'row',
-          }}>
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: '#fff',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
+        <View style={styles.imageBlockContainer}>
+          <View style={styles.touchableImage}>
             <TouchableOpacity
               onPress={() => {
                 props.navigation.navigate('LargeImg', {
@@ -30,32 +17,23 @@ export const ImageBlock = (props) => {
                 });
               }}>
               <Image
-                style={{width: 100, height: 100}}
+                style={styles.imageItem}
                 source={{
                   uri: props.imgData.urls.small,
                 }}
               />
             </TouchableOpacity>
           </View>
-          <View
-            style={{
-              flex: 2,
-              backgroundColor: '#fff',
-            }}>
-            <View style={{backgroundColor: '#fff'}}>
-              <Text style={{fontSize: 22, fontWeight: '700'}}>
+          <View style={styles.descriptionContainer}>
+            <View>
+              <Text style={styles.descriptionText}>
                 {`${props.imgData.alt_description[0].toUpperCase()}${props.imgData.alt_description.slice(
                   1,
                 )}`}
               </Text>
             </View>
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: '#fff',
-                justifyContent: 'flex-end',
-              }}>
-              <Text style={{fontStyle: 'italic'}}>
+            <View style={styles.descriptionAuthor}>
+              <Text style={styles.descriptionAuthorText}>
                 by {props.imgData.user.first_name}
               </Text>
             </View>
@@ -65,3 +43,31 @@ export const ImageBlock = (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  imageBlockContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#000',
+    flexDirection: 'row',
+  },
+  touchableImage: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imageItem: {width: 100, height: 100},
+  descriptionContainer: {
+    flex: 2,
+    backgroundColor: '#fff',
+  },
+  descriptionText: {fontSize: 22, fontWeight: '700'},
+  descriptionAuthor: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-end',
+  },
+  descriptionAuthorText: {fontStyle: 'italic'},
+});

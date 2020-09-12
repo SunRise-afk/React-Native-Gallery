@@ -7,7 +7,6 @@ export const LargeImg = (props) => {
       <Image
         style={{
           flex: 1,
-          backgroundColor: '#000',
         }}
         source={{
           uri: props.route.params.imgUri,
